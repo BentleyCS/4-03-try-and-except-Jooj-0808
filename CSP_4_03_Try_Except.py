@@ -8,7 +8,13 @@ def sum(arr : list) -> int:
     :param arr:
     :return:
     """
-    pass
+    total = 0
+    for number in arr:
+        try:
+            total += number
+        except TypeError:
+            continue
+    return total
 
 def cleanData(rawData : list) ->list:
     """
@@ -17,7 +23,15 @@ def cleanData(rawData : list) ->list:
     :param rawData:
     :return:
     """
-    pass
+
+    final = []
+    for value in rawData:
+        try:
+            final.append(float(value))
+        except ValueError:
+            continue
+    return final
+
 def unreliableCalculator(divisors : list) -> list:
     """
     Modify the function such that it takes in a list as an argument and returns a new list where each
@@ -27,8 +41,13 @@ def unreliableCalculator(divisors : list) -> list:
     :param divisors:
     :return:
     """
-    pass
-
+    final = []
+    for operand in divisors:
+        try:
+            final.append(100/operand)
+        except Exception as e:
+            final.append(type(e).__name__)
+    return final
 
 def upperAll(arr : list) -> None:
     """
@@ -38,10 +57,9 @@ def upperAll(arr : list) -> None:
     :param arr:
     :return:
     """
-    x = "hello"
-    print(x)
-    x = x.upper()
-    print(x)
+    for i in range(len(arr)):
+        if isinstance(arr[i], str):
+            arr[i] = arr[i].upper()
 
 
 def firstItems(arr : list) -> list:
@@ -54,5 +72,19 @@ def firstItems(arr : list) -> list:
     :param arr:
     :return:
     """
-    pass
+    final = []
+    for item in arr:
+        # Check if the current item is a list (but not a string, to avoid
+        # treating strings as iterables of characters)
+        if isinstance(item, list):
+            # If it is a list and not empty, grab its first element
+            if item:
+                final.append(item[0])
+            # Handle empty lists as per specific requirement if needed,
+            # for this example, we skip adding anything.
+        else:
+            # If it's not a list, grab the value itself
+            final.append(item)
+
+    return final
 
